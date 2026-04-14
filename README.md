@@ -34,6 +34,4 @@ SQL Server | SSIS | SSRS | Tableau | Neo4j | T-SQL
 ## 🙏 Acknowledgements
 - BTS (U.S. Department of Transportation Dataset)
 - Dr. Shazia A. Afzal (Module Supervisor)
-- Learning resources: Alex The Analyst, Data with Baraa
-
 ---
