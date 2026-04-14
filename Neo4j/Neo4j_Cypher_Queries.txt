@@ -1,0 +1,45 @@
+Neo4j_Cypher_Queries
+
+1. Total Flights per Airport
+
+MATCH (f:Flight)-[:ARRIVES_AT]->(a:Airport)
+RETURN a.Name AS Airport, SUM(f.ArrFlights) AS TotalFlights
+ORDER BY TotalFlights DESC;
+
+2. Total Delays per Airport
+
+MATCH (f:Flight)-[:ARRIVES_AT]->(a:Airport)
+RETURN a.Name AS Airport, SUM(f.ArrDel15) AS TotalDelays
+ORDER BY TotalDelays DESC;
+
+3. Total Flights per Carrier
+
+MATCH (c:Carrier)-[:OPERATES]->(f:Flight)
+RETURN c.Name AS Carrier, SUM(f.ArrFlights) AS TotalFlights
+ORDER BY TotalFlights DESC;
+
+4. Total Delays per Carrier
+
+MATCH (c:Carrier)-[:OPERATES]->(f:Flight)
+RETURN c.Name AS Carrier, SUM(f.ArrDel15) AS TotalDelays
+ORDER BY TotalDelays DESC;
+
+5. Monthly Flight Volume
+
+MATCH (f:Flight)
+RETURN f.Date AS Month, SUM(f.ArrFlights) AS TotalFlights
+ORDER BY Month;
+
+6. Monthly Delay Trends
+
+MATCH (f:Flight)
+RETURN f.Date AS Month, SUM(f.ArrDel15) AS TotalDelays
+ORDER BY Month;
+
+
+7. Delay Rate per Carrier (KPI)
+
+MATCH (c:Carrier)-[:OPERATES]->(f:Flight)
+RETURN c.Name AS Carrier,
+       SUM(f.ArrDel15) * 1.0 / SUM(f.ArrFlights) AS DelayRate
+ORDER BY DelayRate DESC;
